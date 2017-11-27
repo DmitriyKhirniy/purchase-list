@@ -8,4 +8,5 @@ module.exports = (app) => {
     app.post('/api/purchase', purchasesController.create);
     app.get('/api/purchase', purchasesController.list);
     app.put('/api/purchase/:purchaseId', purchasesController.update);
+    app.get('/api/purchase/:purchaseId', purchasesController.retrieve);
 };

@@ -14,7 +14,7 @@ module.exports = {
     list(req, res) {
         return Purchase
             .all()
-            .then(todos => res.status(200).send(todos))
+            .then(purchases => res.status(200).send(purchases))
             .catch(error => res.status(400).send(error));
     },
     update(req, res) {
@@ -36,5 +36,18 @@ module.exports = {
                     .catch((error) => res.status(400).send(error));
             })
             .catch((error) => res.status(400).send(error));
+    },
+    retrieve(req, res) {
+        return Purchase
+            .findById(req.params.purchaseId)
+            .then(purchase => {
+                if (!purchase) {
+                    return res.status(404).send({
+                        message: 'Purchase Not Found',
+                    });
+                }
+                return res.status(200).send(purchase);
+            })
+            .catch(error => res.status(400).send(error));
     },
 };
