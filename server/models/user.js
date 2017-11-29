@@ -6,12 +6,12 @@ module.exports = (sequelize, DataTypes) => {
     age: DataTypes.INTEGER,
     isActive: DataTypes.BOOLEAN,
     birthDate: DataTypes.DATE
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
   });
+  User.associate = (models) => {
+    User.hasMany(models.Purchase, {
+        foreignKey: 'userId',
+        as: 'purchaseItems',
+    });
+  };
   return User;
 };

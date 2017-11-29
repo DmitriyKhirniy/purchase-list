@@ -1,24 +1,17 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Purchases', {
+    return queryInterface.createTable('Currencies', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      title: {
-        type: Sequelize.STRING
-      },
-      description: {
-        type: Sequelize.STRING
-      },
-      amount: {
-        type: Sequelize.DECIMAL
-      },
-      destination: {
-        type: Sequelize.STRING
+      name: {
+        type: Sequelize.ENUM,
+        defaultValue: 'UAH',
+        values: ['UAH', 'USD']
       },
       createdAt: {
         allowNull: false,
@@ -31,6 +24,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Purchases');
+    return queryInterface.dropTable('Currencies');
   }
 };
